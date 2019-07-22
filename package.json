@@ -4,7 +4,7 @@
   "description": "Creates a JSON file with all Descriptions and Licenses of your installed Node Modules",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",
