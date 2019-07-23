@@ -1,10 +1,13 @@
 {
   "name": "npmlister",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Creates a JSON file with all Descriptions and Licenses of your installed Node Modules",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js"
+  },
+  "bin": {
+    "npmlister": "./index.js"
   },
   "repository": {
     "type": "git",
