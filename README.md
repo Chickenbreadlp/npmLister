@@ -5,7 +5,7 @@
 Outputs all npm Packages as well as Dependencies within a Node.JS Project as JSON.
 
 # How to use
-Run `npx npmLister` on the project.
+Run `npx npmlister` on the project.
 
 ## Arguments
 `-?`  
