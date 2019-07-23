@@ -132,4 +132,7 @@ else {
       console.log(JSON.stringify(allPackages));
     }
   }
+  else {
+    console.warn('"node_modules" Folder not found!');
+  }
 }
