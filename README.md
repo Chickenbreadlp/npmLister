@@ -1,9 +1,11 @@
+![npm](https://img.shields.io/npm/v/npmlister.svg)
+![npm bundle size](https://img.shields.io/bundlephobia/min/npmlister.svg)
+![NPM](https://img.shields.io/npm/l/npmlister.svg)
 # npmLister
 Outputs all npm Packages as well as Dependencies within a Node.JS Project as JSON.
 
 # How to use
-Clone this Repository.
-Run `npm i` on the project.
+Run `npx npmLister` on the project.
 
 ## Arguments
 `-?`  
