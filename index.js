@@ -32,7 +32,7 @@ else {
     runPath = process.argv[process.argv.indexOf('-p') + 1]
   }
 
-  var allPackages;
+  let allPackages;
 
   if (array) {
     allPackages = []
@@ -43,15 +43,17 @@ else {
 
   // Returns the contents of the package.json
   function readPackageData(modulePath) {
-    var rawdata = fs.readFileSync(path.resolve(runPath, 'node_modules', modulePath, 'package.json'));
-    var package = JSON.parse(rawdata);
+    let pathToPackage = path.resolve(runPath, 'node_modules', modulePath, 'package.json');
+    let rawdata = fs.readFileSync(pathToPackage);
+    let package = JSON.parse(rawdata);
 
     return package;
   }
   // Returns the contents of the license file
   function readLicenseFile(modulePath) {
-    if (fs.existsSync(path.resolve(runPath, 'node_modules', modulePath, 'LICENSE'))) {
-      var licenseText = fs.readFileSync(path.resolve(runPath, 'node_modules', modulePath, 'LICENSE'), { encoding: 'utf8'});
+    let pathToLicense = path.resolve(runPath, 'node_modules', modulePath, 'LICENSE');
+    if (fs.existsSync(pathToLicense)) {
+      let licenseText = fs.readFileSync(pathToLicense, { encoding: 'utf8'});
       return licenseText
     }
     else {
@@ -62,8 +64,8 @@ else {
   // Adds a package with it's license to the allPackages object
   function addPackage(modulePath) {
     // Gets the package.json and the license
-    var package = readPackageData(modulePath);
-    var license = readLicenseFile(modulePath);
+    let package = readPackageData(modulePath);
+    let license = readLicenseFile(modulePath);
 
     if (typeof package.author !== 'object') {
       package.author = {
@@ -98,14 +100,15 @@ else {
 
   if (fs.existsSync(path.resolve(runPath, 'node_modules'))) {
     // Gets an Array of all node_modules
-    var allDirs = getDirectories(path.resolve(runPath, 'node_modules'));
+    let nodeModuleFolder = path.resolve(runPath, 'node_modules');
+    let allDirs = getDirectories(nodeModuleFolder);
 
     for (var i = 0; i < allDirs.length; i++) {
       // Only if the folder isn't a "hidden" one, check if it's a module collection or not
       if (allDirs[i].indexOf('.') !== 0) {
         if (allDirs[i].indexOf('@') === 0) {
           // go through all the modules within a module collection
-          var tmpDirs = getDirectories(path.resolve(runPath, 'node_modules', allDirs[i]))
+          let tmpDirs = getDirectories(path.resolve(nodeModuleFolder, allDirs[i]))
           for (var j = 0; j < tmpDirs.length; j++) {
             if (tmpDirs[j].indexOf('.') !== 0 && tmpDirs[j].indexOf('@') !== 0) {
               addPackage(allDirs[i] + '/' + tmpDirs[j]);
@@ -123,7 +126,7 @@ else {
     // Checks wether the OutputFile Arg is given
     if (process.argv.indexOf('-o') >= 0 && process.argv.indexOf('-o') + 1 < process.argv.length) {
       // Writes Packagedata to specified file
-      var outputFile = process.argv[process.argv.indexOf('-o') + 1];
+      let outputFile = process.argv[process.argv.indexOf('-o') + 1];
       fs.writeFileSync(outputFile, JSON.stringify(allPackages), { encoding: 'utf8' });
       console.log('File written: ' + path.resolve(outputFile));
     }
