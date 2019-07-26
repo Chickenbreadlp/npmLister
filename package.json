@@ -1,6 +1,6 @@
 {
   "name": "npmlister",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Creates a JSON file with all Descriptions and Licenses of your installed Node Modules",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "npm",
     "npmlister",
     "package",
-    "pkg"
+    "pkg",
+    "JSON"
   ]
 }

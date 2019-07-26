@@ -20,6 +20,7 @@ if (process.argv.indexOf('-?') >= 0) {
     '\t-?\t\tDisplays this text\n\n' +
     '\t-obj\t\tReturns the List of Packages as an Object rather than an array.\n' +
     '\t  \t\tThe package-names make up the keys.\n\n' +
+    '\t-pp\t\tThe resulting JSON will be in pretty-print\n\n' +
     '\t-p [PATH]\tSpecifies a custom location to run from\n\n' +
     '\t-o [PATH]\tSpecifies a file-output'
   );
@@ -122,17 +123,25 @@ else {
       }
     }
 
+    var prettyprint = null;
+
+    if (process.argv.indexOf('-pp') >= 0) {
+      prettyprint = '\t';
+    }
+
+    var outputJSON = JSON.stringify(allPackages, null, prettyprint);
+
     // output the allPackages Object
     // Checks wether the OutputFile Arg is given
     if (process.argv.indexOf('-o') >= 0 && process.argv.indexOf('-o') + 1 < process.argv.length) {
       // Writes Packagedata to specified file
       let outputFile = process.argv[process.argv.indexOf('-o') + 1];
-      fs.writeFileSync(outputFile, JSON.stringify(allPackages), { encoding: 'utf8' });
+      fs.writeFileSync(outputFile, outputJSON, { encoding: 'utf8' });
       console.log('File written: ' + path.resolve(outputFile));
     }
     else {
       // Outputs Packagedata to Console (Useful for pipes)
-      console.log(JSON.stringify(allPackages));
+      console.log(outputJSON);
     }
   }
   else {

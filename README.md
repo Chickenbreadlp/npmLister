@@ -13,6 +13,8 @@ Or run `npm i npmlister -g` to install and then use `npmlister` in your project 
 Shows Help  
 `-obj`  
 Outputs Packagedata as an Object instead of an Array. Keys are the Package names  
+`-pp`  
+Pretty-Prints the Output
 `-p [PATH]`  
 Specifies the Path of the project from which you want to get the Package Listed. If this is not given, the current path will be used  
 `-o [PATH]`  
